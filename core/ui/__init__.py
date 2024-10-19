@@ -1,0 +1,1 @@
+from .lyricshow import lyricshow,label1,label2
