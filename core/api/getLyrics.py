@@ -50,9 +50,10 @@ class GetLyrics:
         while True:
             try: sid,self.p = self.getSong()
             except: 
-                time.sleep(0.5)
                 print("未检测到歌词信息")
-                continue
+                self.ll,self.nl = "", ""
+                time.sleep(0.5)
+                return
             else: break
         if sid!= self.sid: self.initsong()
         for i in range(len(self.timing)):
