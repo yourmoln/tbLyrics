@@ -4,7 +4,13 @@ class GetLyrics:
         self.initsong()
     def initsong(self):
         """获取当前歌曲信息"""
-        self.sid,self.p = self.getSong()
+        while True:
+            try: self.sid,self.p = self.getSong()
+            except: 
+                time.sleep(0.5)
+                print("未检测到音乐软件")
+                continue
+            else: break
         print(self.p)
         self.l = self.lyric(self.sid).split("\n")
         timing = map(lambda x:(re.findall(r"\[(.*?)\]", x)+["9999:99"])[0] , self.l)
@@ -41,7 +47,13 @@ class GetLyrics:
             return None
     def flash(self):
         """刷新歌词"""
-        sid,self.p = self.getSong()
+        while True:
+            try: sid,self.p = self.getSong()
+            except: 
+                time.sleep(0.5)
+                print("未检测到歌词信息")
+                continue
+            else: break
         if sid!= self.sid: self.initsong()
         for i in range(len(self.timing)):
             if self.timing[i] > self.p:
